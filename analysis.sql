@@ -38,3 +38,19 @@ WHERE
         )
 ORDER BY 
     name ASC;
+
+SELECT 
+    Students.name, 
+    SUM(Achievement.bonus) AS 'bonus point'
+FROM 
+    Students
+INNER JOIN Student_Achievement
+    ON Students.student_id = Student_Achievement.student_id
+INNER JOIN Achievement
+    ON Student_Achievement.achievement_id = Achievement.achievement_id
+GROUP BY 
+    Students.name
+ORDER BY 
+    SUM(Achievement.bonus) DESC, 
+    Students.name
+LIMIT 4;
