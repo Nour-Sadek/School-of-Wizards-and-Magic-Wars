@@ -39,6 +39,22 @@ WHERE
 ORDER BY 
     name ASC;
 
+/*
+Stage 2: Best students
+
+Description
+The student efforts were insufficient to defend the school, so we need more students. 
+To find them, you need to consider the student achievements. 
+They need you to calculate them!
+
+Objectives
+Find four students with the most achievement points and 
+list their names in alphabetical order with their scores. 
+The student's year is not critical. 
+The output should have only the name and the bonus point column. 
+The output should be in descending order of the bonus point column.
+*/
+
 SELECT 
     Students.name, 
     SUM(Achievement.bonus) AS 'bonus point'
