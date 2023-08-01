@@ -92,15 +92,15 @@ WITH avg_result AS (
     GROUP BY 
         student_id
     )
-    SELECT 
-        name, 
-        CASE 
-            WHEN avg_result.score_avg > 3.5 THEN 'above average'
-            ELSE 'below average'
-            END AS 'best'
-    FROM
-        Students
-    INNER JOIN avg_result
-        ON Students.student_id = avg_result.student_id
-    ORDER BY
-        name ASC;
+SELECT 
+    name, 
+    CASE 
+        WHEN avg_result.score_avg > 3.5 THEN 'above average'
+        ELSE 'below average'
+        END AS 'best'
+FROM
+    Students
+INNER JOIN avg_result
+    ON Students.student_id = avg_result.student_id
+ORDER BY
+    name ASC;
