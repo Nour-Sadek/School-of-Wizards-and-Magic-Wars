@@ -70,3 +70,37 @@ ORDER BY
     SUM(Achievement.bonus) DESC, 
     Students.name
 LIMIT 4;
+
+/*
+Stage 3: More students
+
+Description
+We've successfully repelled the attack, but the second wave is coming, and the students are tired. 
+We need new students! Of course, it is you who must find these students.
+
+Objectives
+If the student's average is over 3.5 points for courses, output above average in the best column. 
+Otherwise, print below average. Order the results in alphabetical order by name.
+*/
+
+WITH avg_result AS (
+    SELECT 
+        student_id,
+        AVG(result) AS score_avg
+    FROM 
+        Student_Subject
+    GROUP BY 
+        student_id
+    )
+    SELECT 
+        name, 
+        CASE 
+            WHEN avg_result.score_avg > 3.5 THEN 'above average'
+            ELSE 'below average'
+            END AS 'best'
+    FROM
+        Students
+    INNER JOIN avg_result
+        ON Students.student_id = avg_result.student_id
+    ORDER BY
+        name ASC;
