@@ -16,20 +16,25 @@ Result column shows the student's grade in the course.
 */
 
 WITH result_avg AS (
-    SELECT student_id,
-            AVG(result) AS score_avg
-    FROM Student_Subject
-    GROUP BY student_id
-    HAVING score_avg = 5.0 AND
-           semester = 3
-)
-SELECT name
-FROM Students
-WHERE student_id IN (
-    SELECT student_id
-    FROM result_avg
-)
-ORDER BY name ASC;
-
-SELECT * FROM Students;
-
+    SELECT 
+        student_id,
+        AVG(result) AS score_avg
+    FROM 
+        Student_Subject
+    GROUP BY 
+        student_id
+    HAVING 
+        score_avg = 5.0 AND
+        semester = 3
+    )
+SELECT 
+    name
+FROM 
+    Students
+WHERE 
+    student_id IN (
+        SELECT student_id
+        FROM result_avg
+        )
+ORDER BY 
+    name ASC;
