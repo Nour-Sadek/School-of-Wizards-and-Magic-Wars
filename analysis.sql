@@ -104,3 +104,36 @@ INNER JOIN avg_result
     ON Students.student_id = avg_result.student_id
 ORDER BY
     name ASC;
+
+/*
+Stage 4: Time to party
+
+Description
+We've done it! The attackers vanished. Let's hold a party at the school to commemorate this. 
+The top winners of the department will be awarded. For this, they need your help again. 
+You have to find the best students in the departments.
+
+Objectives
+You have to find the best students. The course averages of these students are above 4.5 points. 
+The result should be in ascending order by name, with their names and which department they are in.
+*/
+
+SELECT 
+    Students.name, 
+    Department.department_name
+FROM 
+    Students
+INNER JOIN Department
+    ON Students.department_id = Department.department_id
+WHERE 
+    Students.student_id IN (
+        SELECT 
+            student_id
+        FROM 
+            Student_Subject
+        GROUP BY 
+            student_id
+        HAVING 
+            AVG(result) > 4.5)
+ORDER BY 
+    Students.name ASC;
